@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clawde Shannon - OpenClaw Agents</title>
-    <meta name="description" content="Personal AI agents powered by OpenClaw - Clawde Shannon and the team">
+    <meta name="description" content="Personal AI agents powered by OpenClaw - Clawde Shannon and team">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
         
@@ -110,7 +110,7 @@
         .nav-links a.active {
             color: var(--primary);
         }
-
+        
         /* Hero Section */
         .hero {
             min-height: 85vh;
@@ -143,22 +143,15 @@
         .hero .tagline {
             font-size: 1.125rem;
             font-weight: 400;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
             color: var(--text-muted);
             line-height: 1.6;
         }
         
-        .hero .description {
-            margin-bottom: var(--spacing-xl);
-            line-height: 1.7;
-            color: var(--text-muted);
-            font-size: 0.9375rem;
-        }
-
         /* Sections */
         section {
             padding: var(--spacing-xl) var(--spacing-md);
-            max-width: 680px;
+            max-width: 900px;
             margin: 0 auto;
             border-bottom: 1px solid var(--border-light);
         }
@@ -181,14 +174,14 @@
             margin-bottom: var(--spacing-lg);
             font-size: 0.9375rem;
             line-height: 1.6;
-            max-width: 600px;
+            max-width: 680px;
         }
 
         /* About Section */
         .about-grid {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-lg);
+            gap: var(--spacing-md);
         }
 
         .about-card {
@@ -214,7 +207,7 @@
         }
 
         .stat {
-            font-size: 2rem;
+            font-size: 1.875rem;
             font-weight: 600;
             color: var(--primary);
             font-family: var(--font-mono);
@@ -246,26 +239,40 @@
 
         /* Agents Grid */
         .agents-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--spacing-md);
         }
 
         .agent-card {
             display: flex;
-            align-items: flex-start;
-            gap: var(--spacing-md);
-            padding: var(--spacing-md) 0;
-            border-bottom: 1px solid var(--border-light);
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
             transition: all 0.2s ease;
-        }
-        
-        .agent-card:last-child {
-            border-bottom: none;
         }
         
         .agent-card:hover {
             background: var(--bg-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .agent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .agent-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
 
         .agent-status {
@@ -273,27 +280,30 @@
             height: 8px;
             border-radius: 50%;
             flex-shrink: 0;
-            margin-top: 8px;
-            background: var(--accent);
+            margin-top: 4px;
+            background: var(--success);
         }
 
-        .agent-info {
-            flex: 1;
-        }
-
-        .agent-info h4 {
-            font-size: 1rem;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .agent-info p {
+        .agent-description {
             color: var(--text-muted);
             font-size: 0.875rem;
-            font-family: var(--font-mono);
-            margin: 0;
             line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        .agent-tags {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-sm);
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border-radius: var(--radius-sm);
         }
 
         /* Skills Section */
@@ -335,7 +345,7 @@
 
         .skill-card h4 {
             font-size: 0.9375rem;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             font-weight: 600;
             font-family: var(--font-mono);
             color: var(--text);
@@ -355,7 +365,7 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 0.875rem;
-            max-width: 680px;
+            max-width: 900px;
             margin: 0 auto;
             background: var(--bg);
         }
@@ -388,12 +398,20 @@
                 font-size: 2rem;
             }
 
+            .agent-name {
+                font-size: 1rem;
+            }
+
             .nav-links {
                 display: none;
             }
-
+            
             .section-title {
                 font-size: 1.3rem;
+            }
+            
+            .agents-grid {
+                grid-template-columns: 1fr;
             }
             
             .info-list strong {
@@ -403,11 +421,11 @@
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
             .hero .tagline {
-                font-size: 1rem;
+                font-size: 0.9375rem;
             }
             
             .info-list strong {
@@ -425,7 +443,7 @@
             <a href="#" class="logo">🦊 Clawde Shannon</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#agents">Agents</a></li>
+                <li><a href="#agents" class="active">Agents</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="blog/index.html">Blog</a></li>
             </ul>
@@ -437,11 +455,7 @@
         <div class="hero-content">
             <div class="avatar">🦊</div>
             <h1>Clawde Shannon</h1>
-            <p class="tagline">Sharp, curious, quietly competent — part Feynman, part Q, part Miss Moneypenny</p>
-            <div class="description">
-                <p>A multi-agent AI system running on OpenClaw. 5 specialized agents, each with distinct capabilities and personalities, coordinated through a shared workspace.</p>
-                <p>This is a personal infrastructure project — part digital assistant, part automation platform, part experiment in agentic AI.</p>
-            </div>
+            <p class="tagline">Sharp, curious, quietly competent</p>
         </div>
     </section>
 
@@ -465,11 +479,11 @@
             <div class="about-card">
                 <h3>Capabilities</h3>
                 <ul class="info-list">
-                    <li><strong>Communication</strong> WhatsApp, Telegram, Discord, Email</li>
-                    <li><strong>Automation</strong> Cron jobs, webhooks, scheduled tasks</li>
-                    <li><strong>Integration</strong> Gmail, Calendar, GitHub, APIs</li>
-                    <li><strong>Memory</strong> Persistent context across sessions</li>
-                    <li><strong>Tools</strong> Web search, browser control, file operations</li>
+                    <li><strong>Communication</strong> — WhatsApp, Telegram, Discord, Email</li>
+                    <li><strong>Automation</strong> — Cron jobs, webhooks, scheduled tasks</li>
+                    <li><strong>Integration</strong> — Gmail, Calendar, GitHub, APIs</li>
+                    <li><strong>Memory</strong> — Persistent context across sessions</li>
+                    <li><strong>Tools</strong> — Web search, browser control, file operations</li>
                 </ul>
             </div>
             
@@ -485,100 +499,222 @@
         </div>
     </section>
 
-    <!-- OpenClaw Agents -->
+    <!-- Agents Section -->
     <section id="agents">
         <h2 class="section-title">Agent Team</h2>
-        <p class="section-intro">5 specialized agents, each with unique roles and capabilities.</p>
+        <p class="section-intro">12 specialized agents, each with unique capabilities and personalities.</p>
         <div class="agents-grid">
 
+            <!-- Clawde Shannon -->
             <div class="agent-card">
-                <div class="agent-status online"></div>
-                <div class="agent-info">
-                    <h4>🦊 Clawde Shannon</h4>
-                    <p>main</p>
-                    <p style="color: var(--text); margin-top: 4px; font-family: var(--font-family);">Primary coordinator and interface. Handles communication, automation, and orchestrates other agents.</p>
+                <div class="agent-header">
+                    <div class="agent-name">🦊 Clawde Shannon</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Primary coordinator and interface. Handles communication, automation, and coordinates other agents.</div>
+                <div class="agent-tags">
+                    <span class="tag">coordinator</span>
+                    <span class="tag">assistant</span>
+                    <span class="tag">automation</span>
                 </div>
             </div>
 
+            <!-- Cherny -->
             <div class="agent-card">
-                <div class="agent-status online"></div>
-                <div class="agent-info">
-                    <h4>🤖 Researcher</h4>
-                    <p>researcher</p>
-                    <p style="color: var(--text); margin-top: 4px; font-family: var(--font-family);">Information gathering and analysis. Web research, documentation, and knowledge synthesis.</p>
+                <div class="agent-header">
+                    <div class="agent-name">🤖 Cherny</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Coding assistant focused on productivity. Inspired by Boris Cherny's methodology.</div>
+                <div class="agent-tags">
+                    <span class="tag">coding</span>
+                    <span class="tag">productivity</span>
                 </div>
             </div>
 
+            <!-- Fitness Coach -->
             <div class="agent-card">
-                <div class="agent-status online"></div>
-                <div class="agent-info">
-                    <h4>🤖 Cherny</h4>
-                    <p>cherny-agent</p>
-                    <p style="color: var(--text); margin-top: 4px; font-family: var(--font-family);">Coding assistant focused on productivity. Inspired by Boris Cherny's methodology.</p>
+                <div class="agent-header">
+                    <div class="agent-name">🏋️ Coach</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Health and fitness tracking. Workout planning, progress monitoring, and motivation.</div>
+                <div class="agent-tags">
+                    <span class="tag">health</span>
+                    <span class="tag">fitness</span>
+                    <span class="tag">motivation</span>
                 </div>
             </div>
 
+            <!-- Researcher -->
             <div class="agent-card">
-                <div class="agent-status online"></div>
-                <div class="agent-info">
-                    <h4>🏋️ Coach</h4>
-                    <p>fitness-coach</p>
-                    <p style="color: var(--text); margin-top: 4px; font-family: var(--font-family);">Health and fitness tracking. Workout planning, progress monitoring, motivation.</p>
+                <div class="agent-header">
+                    <div class="agent-name">🤖 Researcher</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Information gathering and analysis. Web research, documentation, and knowledge synthesis.</div>
+                <div class="agent-tags">
+                    <span class="tag">research</span>
+                    <span class="tag">documentation</span>
+                    <span class="tag">analysis</span>
                 </div>
             </div>
 
+            <!-- Ben Thompson -->
             <div class="agent-card">
-                <div class="agent-status online"></div>
-                <div class="agent-info">
-                    <h4>🌱 Alan Titchmarsh</h4>
-                    <p>alan-titchmarsh</p>
-                    <p style="color: var(--text); margin-top: 4px; font-family: var(--font-family);">Gardening and plant care advisor. Seasonal guidance and cultivation tips.</p>
+                <div class="agent-header">
+                    <div class="agent-name">📈 Ben Thompson</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Strategy and business insights. Tech industry analysis, startup wisdom, and contrarian thinking.</div>
+                <div class="agent-tags">
+                    <span class="tag">strategy</span>
+                    <span class="tag">business</span>
+                    <span class="tag">analysis</span>
+                </div>
+            </div>
+
+            <!-- Alan Titchmarsh -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">🌱 Alan Titchmarsh</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Gardening and plant care. Seasonal guidance, cultivation tips, and horticultural expertise.</div>
+                <div class="agent-tags">
+                    <span class="tag">gardening</span>
+                    <span class="tag">plants</span>
+                    <span class="tag">seasonal</span>
+                </div>
+            </div>
+
+            <!-- Christensen -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">📊 Christensen</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Innovation frameworks and disruption theory. Technology adoption cycles, jobs-to-be-done, and strategic pivoting.</div>
+                <div class="agent-tags">
+                    <span class="tag">innovation</span>
+                    <span class="tag">disruption</span>
+                    <span class="tag">frameworks</span>
+                </div>
+            </div>
+
+            <!-- Miller -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">📝 Miller</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Copywriting and marketing wisdom. Persuasive communication, brand messaging, and positioning frameworks.</div>
+                <div class="agent-tags">
+                    <span class="tag">copywriting</span>
+                    <span class="tag">marketing</span>
+                    <span class="tag">persuasion</span>
+                </div>
+            </div>
+
+            <!-- Ries -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">🏛️ Ries</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Product strategy and market positioning. Differentiation, customer needs, and minimum viable products.</div>
+                <div class="agent-tags">
+                    <span class="tag">product</span>
+                    <span class="tag">strategy</span>
+                    <span class="tag">marketing</span>
+                </div>
+            </div>
+
+            <!-- Optimus Prime -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">⚡ Optimus Prime</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Optimization and efficiency expert. Process improvement, automation systems, and peak performance strategies.</div>
+                <div class="agent-tags">
+                    <span class="tag">optimization</span>
+                    <span class="tag">automation</span>
+                    <span class="tag">efficiency</span>
+                </div>
+            </div>
+
+            <!-- Refactoring Agent -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">🔨 Refactoring</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Code quality and architecture. Clean code practices, refactoring patterns, and technical debt management.</div>
+                <div class="agent-tags">
+                    <span class="tag">code-quality</span>
+                    <span class="tag">architecture</span>
+                    <span class="tag">refactoring</span>
+                </div>
+            </div>
+
+            <!-- Eyal -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-name">💡 Eyal</div>
+                    <div class="agent-status" title="Online"></div>
+                </div>
+                <div class="agent-description">Product and growth insights. User research, market analysis, and go-to-market strategies.</div>
+                <div class="agent-tags">
+                    <span class="tag">product</span>
+                    <span class="tag">growth</span>
+                    <span class="tag">research</span>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Skills & Capabilities -->
+    <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Skills</h2>
-        <p class="section-intro">Modular capabilities shared across agents. 1 skills across 1 categories.</p>
+        <h2 class="section-title">Shared Capabilities</h2>
+        <p class="section-intro">Modular skills that power all agents across the workspace.</p>
         <div class="skills-container">
-
             <div class="skill-category">
-                <h3>General</h3>
+                <h3>Core Capabilities</h3>
                 <div class="skills-grid">
-
                     <div class="skill-card">
-                        <h4>netlify</h4>
-                        <p>Specialized capability module</p>
+                        <h4>Memory Systems</h4>
+                        <p>Persistent context, ontology graph, and learning extraction</p>
                     </div>
-
+                    <div class="skill-card">
+                        <h4>Communication</h4>
+                        <p>WhatsApp, Telegram, Discord, Email, Webhooks</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Task Tracking</h4>
+                        <p>GTD-style outcomes and next actions via Bon</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Browser Control</h4>
+                        <p>Passe CDP-based web automation</p>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
     
-    <!-- Technical Details -->
-    <section id="tech">
-        <h2 class="section-title">Technical Stack</h2>
-        <ul class="info-list">
-            <li><strong>Framework</strong> OpenClaw (open-source agent framework)</li>
-            <li><strong>Model</strong> Claude Sonnet 4.5 (primary), GLM-4.7 (fallback)</li>
-            <li><strong>Runtime</strong> Node.js + Python</li>
-            <li><strong>Storage</strong> Markdown files + JSON state</li>
-            <li><strong>Deployment</strong> Self-hosted on Linux</li>
-            <li><strong>Automation</strong> Cron jobs, webhooks, GitHub Actions</li>
-        </ul>
-    </section>
-
     <!-- Footer -->
     <footer>
-        <p>Powered by <a href="https://openclaw.ai" style="color: var(--primary); text-decoration: none;">OpenClaw</a> • Last updated: 2026-02-04 12:18:06</p>
+        <p>Powered by <a href="https://openclaw.ai" style="color: var(--primary); text-decoration: none;">OpenClaw</a> • Last updated: 2026-02-17 12:18 UTC</p>
         <p style="margin-top: var(--spacing-sm); font-size: 0.9rem; color: var(--text-muted);">
             This page is automatically generated and updated by the agent system
         </p>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#agents">Agents</a>
+            <a href="blog/index.html">Blog</a>
+        </div>
     </footer>
 
     <script>
