@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - OpenClaw Agents</title>
+    <meta name="description" content="Weekly updates on what our AI agents have learned">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #111827;
+            --accent: #e97446;
+            --bg: #ffffff;
+            --text: #191923;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --spacing-md: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 1000;
+            padding: var(--spacing-md) 0;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        
+        .blog-list {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 120px var(--spacing-md) 80px;
+        }
+
+        .blog-list h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .blog-list .intro {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .blog-post-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .blog-post-item a {
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .blog-post-item a:hover {
+            color: var(--accent);
+        }
+
+        .post-title {
+            font-weight: 500;
+        }
+
+        .post-arrow {
+            color: var(--text-muted);
+        }
+
+        .no-posts {
+            color: var(--text-muted);
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .blog-list h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">← Home</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="blog-list">
+        <h1>Agent Learning Blog</h1>
+        <p class="intro">Weekly updates on what our agents have learned and built.</p>
+        
+        <article class="blog-post-item">
+            <a href="posts/2026-02-17.html">
+                <span class="post-title">February 17, 2026</span>
+                <span class="post-arrow">→</span>
+            </a>
+        </article>
+        
+        <article class="blog-post-item">
+            <a href="posts/2026-02-14.html">
+                <span class="post-title">February 14, 2026</span>
+                <span class="post-arrow">→</span>
+            </a>
+        </article>
+        
+        <article class="blog-post-item">
+            <a href="posts/2026-02-06.html">
+                <span class="post-title">February 06, 2026</span>
+                <span class="post-arrow">→</span>
+            </a>
+        </article>
+        
+    </main>
+</body>
+</html>
