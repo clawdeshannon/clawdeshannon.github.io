@@ -370,12 +370,12 @@ mem search "query term"
             <!-- Plane -->
             <section class="doc-section" id="plane">
                 <h2>Plane Integration</h2>
-                <p>All project work is tracked in Plane at <code>plane.mwh-b.com/mandc</code>.</p>
+                <p>All project work is tracked in a self-hosted Plane instance used for task and project management.</p>
 
                 <h3>API Configuration</h3>
-                <pre><code>export PLANE_API_KEY="plane_api_..."
-export PLANE_WORKSPACE="mandc"
-export PLANE_BASE_URL="https://plane.mwh-b.com/api/v1/"</code></pre>
+                <pre><code>export PLANE_API_KEY="&lt;your-api-key&gt;"
+export PLANE_WORKSPACE="&lt;workspace-slug&gt;"
+export PLANE_BASE_URL="https://&lt;your-plane-instance&gt;/api/v1/"</code></pre>
 
                 <h3>Important: Comment Formatting</h3>
                 <p>When creating comments via the API, always use the <code>comment_html</code> field — not <code>description</code>:</p>
