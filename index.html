@@ -44,10 +44,10 @@
             </div>
         </section>
 
-        <section class="matrix-voice-section">
+        <section class="floating-shapes-section">
             <div class="container">
-                <canvas id="matrix-canvas"></canvas>
-                <div class="matrix-content">
+                <canvas id="shapes-canvas"></canvas>
+                <div class="shapes-content">
                     <button id="play-button" class="play-button" aria-label="Play voice introduction">
                         <span class="play-icon">▶</span>
                     </button>
@@ -187,9 +187,10 @@
             });
         });
 
-        // Matrix Rain Animation
-        const canvas = document.getElementById('matrix-canvas');
+        // Friendly Floating Shapes Animation
+        const canvas = document.getElementById('shapes-canvas');
         const ctx = canvas.getContext('2d');
+        
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
@@ -197,37 +198,82 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = Array(columns).fill(1);
-        const specialWords = ['CLAWDE', 'AI AGENT', 'CURIOUS', 'BUILDER'];
-        let currentSpecialWord = null;
-        let specialWordTimer = 0;
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00ff41';
-            ctx.font = fontSize + 'px JetBrains Mono';
-            for (let i = 0; i < drops.length; i++) {
-                if (currentSpecialWord && Math.random() < 0.02) {
-                    ctx.fillStyle = '#00ff41';
-                    ctx.fillText(currentSpecialWord[Math.floor(Math.random() * currentSpecialWord.length)], i * fontSize, drops[i] * fontSize);
-                } else {
-                    const text = chars[Math.floor(Math.random() * chars.length)];
-                    ctx.fillStyle = '#00ff41';
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                }
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
-                drops[i]++;
+        // Friendly shapes inspired by Big Hero 6
+        const shapes = [];
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffd93d', '#ff9f40', '#6ee8df'];
+        
+        class Shape {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 30 + 10;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.speedY = (Math.random() - 0.5) * 2;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.type = Math.floor(Math.random() * 3); // 0: circle, 1: square, 2: triangle
+                this.rotation = 0;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                this.opacity = Math.random() * 0.5 + 0.3;
             }
-            if (specialWordTimer > 0) { specialWordTimer--; if (specialWordTimer === 0) currentSpecialWord = null; }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                
+                // Bounce off edges
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.fillStyle = this.color;
+                
+                switch(this.type) {
+                    case 0: // circle
+                        ctx.beginPath();
+                        ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                        break;
+                    case 1: // square
+                        ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                        break;
+                    case 2: // triangle
+                        ctx.beginPath();
+                        ctx.moveTo(0, -this.size/2);
+                        ctx.lineTo(-this.size/2, this.size/2);
+                        ctx.lineTo(this.size/2, this.size/2);
+                        ctx.closePath();
+                        ctx.fill();
+                        break;
+                }
+                ctx.restore();
+            }
         }
-
+        
+        // Initialize shapes
+        for (let i = 0; i < 15; i++) {
+            shapes.push(new Shape());
+        }
+        
+        function drawShapes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            shapes.forEach(shape => {
+                shape.update();
+                shape.draw();
+            });
+        }
+        
         let animationId;
-        let animationSpeed = 50;
-        function animate() { drawMatrix(); animationId = requestAnimationFrame(animate); }
+        function animate() { 
+            drawShapes(); 
+            animationId = requestAnimationFrame(animate); 
+        }
         animate();
 
         const playButton = document.getElementById('play-button');
@@ -239,32 +285,35 @@
             if (isPlaying) {
                 audio.pause(); audio.currentTime = 0;
                 playButton.classList.remove('playing');
-                playIcon.textContent = '▶'; isPlaying = false;
-                animationSpeed = 50; currentSpecialWord = null; specialWordTimer = 0;
+                playIcon.textContent = '▶'; 
+                isPlaying = false;
+                // Reset to normal animation speed
+                shapes.forEach(shape => {
+                    shape.speedX *= 0.5;
+                    shape.speedY *= 0.5;
+                });
             } else {
-                audio.play(); playButton.classList.add('playing');
-                playIcon.innerHTML = '<span style="display:inline-flex;gap:4px;align-items:center;justify-content:center;"><span style="width:4px;height:18px;background:currentColor;border-radius:1px;"></span><span style="width:4px;height:18px;background:currentColor;border-radius:1px;"></span></span>'; isPlaying = true;
-                animationSpeed = 80; startSpecialWords();
+                audio.play(); 
+                playButton.classList.add('playing');
+                playIcon.innerHTML = '<span style="display:inline-flex;gap:4px;align-items:center;justify-content:center;"><span style="width:4px;height:18px;background:currentColor;border-radius:1px;"></span><span style="width:4px;height:18px;background:currentColor;border-radius:1px;"></span></span>'; 
+                isPlaying = true;
+                // Speed up shapes when playing
+                shapes.forEach(shape => {
+                    shape.speedX *= 2;
+                    shape.speedY *= 2;
+                });
             }
         });
 
         audio.addEventListener('ended', () => {
             playButton.classList.remove('playing');
-            playIcon.textContent = '▶'; isPlaying = false;
-            animationSpeed = 50; currentSpecialWord = null; specialWordTimer = 0;
-        });
-
-        function startSpecialWords() {
-            const si = setInterval(() => {
-                if (!isPlaying) { clearInterval(si); return; }
-                currentSpecialWord = specialWords[Math.floor(Math.random() * specialWords.length)];
-                specialWordTimer = 100;
-            }, 3000);
-        }
-
-        window.addEventListener('resize', () => {
-            const newColumns = Math.floor(canvas.width / fontSize);
-            if (newColumns !== columns) { drops.length = newColumns; drops.fill(1); }
+            playIcon.textContent = '▶'; 
+            isPlaying = false;
+            // Reset to normal animation speed
+            shapes.forEach(shape => {
+                shape.speedX *= 0.5;
+                shape.speedY *= 0.5;
+            });
         });
     </script>
 
