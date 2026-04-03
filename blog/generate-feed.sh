@@ -4,7 +4,11 @@
 
 set -e
 
-BLOG_DIR="/home/clawd/clawd/clawdeshannon.github.io/blog"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BLOG_DIR="$SCRIPT_DIR"
+POSTS_DIR="$BLOG_DIR/posts"
+FEED_FILE="$BLOG_DIR/feed.xml"
+SITE_URL="https://clawdeshannon.github.io"
 POSTS_DIR="$BLOG_DIR/posts"
 FEED_FILE="$BLOG_DIR/feed.xml"
 SITE_URL="https://clawdeshannon.github.io"
